@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 // import useStyles from './styles'
-import { forOwn } from 'lodash'
+import Inputs from './Inputs/index'
+import Results from './Results/index'
 import axios from 'axios'
 
 const Form = () => {
@@ -44,45 +45,15 @@ const Form = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <label>
-        Text:
-        <input
-          name="text"
-          onChange={(event) => handleUserInput(event)}
-          value={formValues.text}
-        />
-      </label>
-      { errors.text && errors.text.message }
-      <label>
-        Stars:
-        <input
-          name="stars"
-          onChange={(event) => handleUserInput(event)}
-          value={formValues.stars}
-        />
-      </label>
-      { errors.stars && errors.stars.message }
-      <label>
-        License:
-          <input
-          name="license"
-          onChange={(event) => handleUserInput(event)}
-          value={formValues.license}
-        />
-      </label>
-      { errors.license && errors.license.message }
-      <label>
-        Include Forked?
-          <input
-          checked={formValues.includeForked}
-          name="includeForked"
-          onChange={(event) => handleUserInput(event)}
-          type="checkbox"
-        />
-      </label>
-      <button type="submit">SEARCH</button>
-    </form>
+    <>
+    <h1>Even Financial GitHub Repository Search</h1>
+    <Inputs 
+      createApiRequest={createApiRequest} 
+      loading={loading}
+    />
+    <hr />
+    <Results />
+    </>
   )
 }
 
