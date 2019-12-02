@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-// import useStyles from './styles'
+import useStyles from './styles'
 import Inputs from './Inputs/index'
 import Results from './Results/index'
 import axios from 'axios'
 
 const Form = () => {
-  // const classes = useStyles()
+  const classes = useStyles()
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
   const [searchResults, setSearchResults] = useState([])
+  const [submitted, setSubmitted] = useState(false)
   const [formValues, setFormValues] = useState({
     text: '',
     stars: '',
@@ -23,6 +24,7 @@ const Form = () => {
         const persons = res.data
         setSearchResults({ persons })
         setLoading(false)
+        setSubmitted(true)
       })
   }
 
@@ -45,15 +47,19 @@ const Form = () => {
   }
 
   return (
-    <>
-    <h1>Even Financial GitHub Repository Search</h1>
-    <Inputs 
-      createApiRequest={createApiRequest} 
-      loading={loading}
-    />
-    <hr />
-    <Results />
-    </>
+    <div className={classes.body}>
+      <p className={classes.title}>Even Financial GitHub Repository Search</p>
+      <Inputs 
+        createApiRequest={createApiRequest} 
+        loading={loading}
+      />
+      <hr />
+      <Results
+        loading={loading}
+        searchResults={searchResults}
+        submitted={submitted}
+      />
+    </div>
   )
 }
 

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 // import useStyles from './styles'
 
-const Inputs = (
+const Inputs = ({
   createApiRequest,
   loading,
-) => {
+}) => {
   // const classes = useStyles()
   const [errors, setErrors] = useState({})
   const [formValues, setFormValues] = useState({
@@ -25,6 +25,7 @@ const Inputs = (
       case 'text':
       case 'stars':
       case 'license':
+      default: 
     }
   }
 

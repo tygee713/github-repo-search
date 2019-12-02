@@ -8,6 +8,7 @@ const useStyles = createUseStyles({
     height: '100vh',
   },
   body: {
+    color: '#333333',
     flex: 1,
   },
   logo: {
