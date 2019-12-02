@@ -6,52 +6,40 @@ import axios from 'axios'
 
 const Form = () => {
   const classes = useStyles()
-  const [loading, setLoading] = useState(false)
-  const [errors, setErrors] = useState({})
-  const [searchResults, setSearchResults] = useState([])
-  const [submitted, setSubmitted] = useState(false)
   const [formValues, setFormValues] = useState({
     text: '',
     stars: '',
     license: '',
     includeForked: false,
   })
+  const [loading, setLoading] = useState(false)
+  const [searchResults, setSearchResults] = useState([])
+  const [submitted, setSubmitted] = useState(false)
 
   const createApiRequest = () => {
     setLoading(true)
-    axios.get(`https://jsonplaceholder.typicode.com/users`)
-      .then((res) => {
-        const persons = res.data
-        setSearchResults({ persons })
-        setLoading(false)
-        setSubmitted(true)
-      })
-  }
-
-  const handleUserInput = (e) => {
-    const { checked, name, type, value } = e.target
-    const valueOrChecked = type === 'checkbox' ? checked : value
-    setFormValues({ [name]: valueOrChecked }, () => { validateInputField(name, valueOrChecked) })
-  }
-
-  const validateInputField = (name, value) => {
-    switch (name) {
-      case 'text':
-      case 'stars':
-      case 'license':
-    }
-  }
-
-  const onSubmit = () => {
-    !errors && createApiRequest()
+    const { text, stars, license, includeForked } = formValues
+    const starsString = stars ? `+stars:${stars}` : ''
+    const licenseString = license ? `+license:${license}` : ''
+    const includeForkedString = includeForked ? `+fork:${includeForked}` : ''
+    const url = `https://api.github.com/search/repositories?q=${text}${starsString}${licenseString}${includeForkedString}`
+    axios.get(url).then((res) => {
+      const persons = res.data
+      console.log(persons)
+      setSearchResults({ persons })
+      setLoading(false)
+      setSubmitted(true)
+    })
   }
 
   return (
     <div className={classes.body}>
       <p className={classes.title}>Even Financial GitHub Repository Search</p>
       <Inputs 
-        createApiRequest={createApiRequest} 
+        createApiRequest={createApiRequest}
+        formValues={formValues}
         loading={loading}
+        setFormValues={setFormValues}
       />
       <hr />
       <Results

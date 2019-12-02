@@ -12,9 +12,7 @@ const App = () => {
       <div className={classes.body}>
         <Form />
       </div>
-      <footer className={classes.footer}>
-        2017 Even Financial, Inc. - CONFIDENTIAL
-      </footer>
+      <footer className={classes.footer}>2017 Even Financial, Inc. - CONFIDENTIAL</footer>
     </div>
   )
 }

@@ -3,16 +3,12 @@ import React, { useState } from 'react'
 
 const Inputs = ({
   createApiRequest,
+  formValues,
   loading,
+  setFormValues,
 }) => {
   // const classes = useStyles()
   const [errors, setErrors] = useState({})
-  const [formValues, setFormValues] = useState({
-    text: '',
-    stars: '',
-    license: '',
-    includeForked: false,
-  })
 
   const handleUserInput = (e) => {
     const { checked, name, type, value } = e.target
