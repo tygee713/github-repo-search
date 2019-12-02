@@ -1,5 +1,6 @@
 import React from 'react'
 import useStyles from './styles'
+import Form from '../../components/Form/index'
 
 const App = () => {
   const classes = useStyles()
