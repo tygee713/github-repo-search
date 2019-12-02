@@ -17,6 +17,7 @@ const useStyles = createUseStyles({
   footer: {
     backgroundColor: '#3F87C6',
     height: 50,
+    minHeight: 50,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -29,6 +30,7 @@ const useStyles = createUseStyles({
   header: {
     backgroundColor: '#3F87C6',
     height: 50,
+    minHeight: 50,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',

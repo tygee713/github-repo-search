@@ -24,9 +24,8 @@ const Form = () => {
     const includeForkedString = includeForked ? `+fork:${includeForked}` : ''
     const url = `https://api.github.com/search/repositories?q=${text}${starsString}${licenseString}${includeForkedString}`
     axios.get(url).then((res) => {
-      const persons = res.data
-      console.log(persons)
-      setSearchResults({ persons })
+      const { data: { items } } = res
+      setSearchResults(items)
       setLoading(false)
       setSubmitted(true)
     })

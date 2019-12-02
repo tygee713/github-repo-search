@@ -13,7 +13,7 @@ const Inputs = ({
   const handleUserInput = (e) => {
     const { checked, name, type, value } = e.target
     const valueOrChecked = type === 'checkbox' ? checked : value
-    setFormValues({ [name]: valueOrChecked }, () => { validateInputField(name, valueOrChecked) })
+    setFormValues({ ...formValues, [name]: valueOrChecked })
   }
 
   const validateInputField = (name, value) => {
@@ -25,8 +25,10 @@ const Inputs = ({
     }
   }
 
-  const onSubmit = () => {
-    !errors && createApiRequest()
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    createApiRequest()
   }
 
   return (
